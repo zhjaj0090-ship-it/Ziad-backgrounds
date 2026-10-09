@@ -1,92 +1,570 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقع محمد للخلفيات</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زياد للخلفيات | One Piece</title>
 
-  <style>
-    body {
-      background-color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #071725;
+    color: white;
+}
+
+header {
+    background: #0c2232;
+    padding: 18px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #c83b35;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo span {
+    display: block;
+    color: #9bb9c9;
+    font-size: 11px;
+    margin-top: 5px;
+    direction: ltr;
+}
+
+.hero {
+    text-align: center;
+    padding: 35px 15px;
+    background: linear-gradient(180deg, #123b53, #071725);
+}
+
+.hero h1 {
+    font-size: 30px;
+    margin: 0 0 12px;
+    color: #ffffff;
+}
+
+.hero p {
+    color: #b5d1df;
+    line-height: 1.8;
+}
+
+.search {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+    padding: 14px;
+    border: 1px solid #31546a;
+    border-radius: 12px;
+    background: #102b3d;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.search::placeholder {
+    color: #a9c9d8;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 15px;
+}
+
+.category {
+    background: #17374b;
+    color: white;
+    border: 1px solid #31546a;
+    border-radius: 25px;
+    padding: 10px 17px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.category.active,
+.category:hover {
+    background: #c83b35;
+    border-color: #c83b35;
+}
+
+h2 {
+    margin: 15px;
+    font-size: 22px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 12px;
+}
+
+.wallpaper {
+    min-width: 0;
+    background: #102b3d;
+    padding: 8px;
+    border-radius: 14px;
+    border: 1px solid #234357;
+    overflow: hidden;
+}
+
+.wallpaper img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: #17374b;
+}
+
+.wallpaper button {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 5px;
+    border: none;
+    border-radius: 9px;
+    background: #c83b35;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.wallpaper button:hover {
+    background: #e44c44;
+}
+
+.wallpaper button:active {
+    transform: scale(0.98);
+}
+
+footer {
+    text-align: center;
+    color: #91b6c9;
+    padding: 25px 10px;
+    margin-top: 20px;
+    border-top: 1px solid #254458;
+    font-size: 13px;
+}
+
+.empty {
+    display: none;
+    text-align: center;
+    padding: 30px 10px;
+    color: #b5d1df;
+}
+
+@media (min-width: 700px) {
+    .gallery {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding: 20px;
+        gap: 16px;
     }
 
-    button {
-      background: green;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 15px;
-      font-size: 16px;
-      margin: 5px;
-      cursor: pointer;
+    .wallpaper img {
+        height: 260px;
     }
 
-    img {
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
+    .hero h1 {
+        font-size: 40px;
     }
-
-    .photo {
-      display: none;
-      margin-top: 20px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <h1 id="titleText">عاوز خلفيات؟ خش عند محمد سالم</h1>
+<header>
+    <div class="logo">
+        زياد للخلفيات☠️
+        <span>ONE PIECE WALLPAPERS</span>
+    </div>
+    <div>🏴‍☠️</div>
+</header>
 
-  <div id="topButtons">
-    <button onclick="showPhoto(1)">اضغط هنا 😈</button>
-    <button onclick="showPhoto(2)">اضغط هنا 2 😈</button>
-  </div>
+<section class="hero">
+    <h1>ارفعوا الأشرعة!</h1>
+    <p>
+        أقوى خلفيات ون بيس في مكان واحد
+        <br>
+        اختار خلفيتك المفضلة من طاقم قبعة القش.
+    </p>
 
-  <div id="photo1" class="photo">
-    <img id="ziadImg" src="ziad.jpeg" alt="صورة زياد">
-    <br>
+    <input
+        type="search"
+        class="search"
+        id="search"
+        placeholder="🔍 ابحث عن خلفية برقمها..."
+        oninput="searchWallpapers()"
+    >
+</section>
 
-    <a href="ziad.jpeg" download="ziad.jpeg">
-      <button>⬇️ تحميل الصورة</button>
-    </a>
+<nav class="categories">
+    <button class="category active" onclick="filterWallpapers('all', this)">
+        كل الخلفيات
+    </button>
 
-    <br>
+    <button class="category" onclick="filterWallpapers('luffy', this)">
+        لوفي
+    </button>
 
-    <button onclick="showPhoto(1)">🔙 رجوع للصورة</button>
-    <button onclick="showPhoto(2)">🖼️ الصورة الثانية</button>
-  </div>
+    <button class="category" onclick="filterWallpapers('zoro', this)">
+        زورو
+    </button>
 
-  <div id="photo2" class="photo">
-    <img id="ziadImg2" src="ziad2.jpeg" alt="الصورة الثانية">
-    <br>
+    <button class="category" onclick="filterWallpapers('sanji', this)">
+        سانجي
+    </button>
 
-    <a href="ziad2.jpeg" download="ziad2.jpeg">
-      <button>⬇️ تحميل الصورة</button>
-    </a>
+    <button class="category" onclick="filterWallpapers('crew', this)">
+        الطاقم
+    </button>
+</nav>
 
-    <br>
+<h2>🏴‍☠️ أحدث الخلفيات</h2>
 
-    <button onclick="showPhoto(2)">🔙 رجوع للصورة</button>
-    <button onclick="showPhoto(1)">🖼️ الصورة الأولى</button>
-  </div>
+<main class="gallery" id="gallery">
 
-  <script>
-    function showPhoto(number) {
-      document.getElementById('titleText').style.display = 'none';
-      document.getElementById('topButtons').style.display = 'none';
+    <!-- 50 زرار للخلفيات -->
 
-      document.getElementById('photo1').style.display =
-        number === 1 ? 'block' : 'none';
+    <div class="wallpaper" data-number="1" data-category="luffy">
+        <img src="1.jpeg" alt="خلفية ون بيس 1" loading="lazy">
+        <button onclick="openWallpaper('1.jpeg')">تحميل الخلفية 1 ⬇️</button>
+    </div>
 
-      document.getElementById('photo2').style.display =
-        number === 2 ? 'block' : 'none';
-    }
-  </script>
+    <div class="wallpaper" data-number="2" data-category="zoro">
+        <img src="2.jpeg" alt="خلفية ون بيس 2" loading="lazy">
+        <button onclick="openWallpaper('2.jpeg')">تحميل الخلفية 2 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="3" data-category="sanji">
+        <img src="3.jpeg" alt="خلفية ون بيس 3" loading="lazy">
+        <button onclick="openWallpaper('3.jpeg')">تحميل الخلفية 3 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="4" data-category="crew">
+        <img src="4.jpeg" alt="خلفية ون بيس 4" loading="lazy">
+        <button onclick="openWallpaper('4.jpeg')">تحميل الخلفية 4 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="5" data-category="luffy">
+        <img src="5.jpeg" alt="خلفية ون بيس 5" loading="lazy">
+        <button onclick="openWallpaper('5.jpeg')">تحميل الخلفية 5 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="6" data-category="zoro">
+        <img src="6.jpeg" alt="خلفية ون بيس 6" loading="lazy">
+        <button onclick="openWallpaper('6.jpeg')">تحميل الخلفية 6 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="7" data-category="sanji">
+        <img src="7.jpeg" alt="خلفية ون بيس 7" loading="lazy">
+        <button onclick="openWallpaper('7.jpeg')">تحميل الخلفية 7 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="8" data-category="crew">
+        <img src="8.jpeg" alt="خلفية ون بيس 8" loading="lazy">
+        <button onclick="openWallpaper('8.jpeg')">تحميل الخلفية 8 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="9" data-category="luffy">
+        <img src="9.jpeg" alt="خلفية ون بيس 9" loading="lazy">
+        <button onclick="openWallpaper('9.jpeg')">تحميل الخلفية 9 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="10" data-category="zoro">
+        <img src="10.jpeg" alt="خلفية ون بيس 10" loading="lazy">
+        <button onclick="openWallpaper('10.jpeg')">تحميل الخلفية 10 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="11" data-category="sanji">
+        <img src="11.jpeg" alt="خلفية ون بيس 11" loading="lazy">
+        <button onclick="openWallpaper('11.jpeg')">تحميل الخلفية 11 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="12" data-category="crew">
+        <img src="12.jpeg" alt="خلفية ون بيس 12" loading="lazy">
+        <button onclick="openWallpaper('12.jpeg')">تحميل الخلفية 12 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="13" data-category="luffy">
+        <img src="13.jpeg" alt="خلفية ون بيس 13" loading="lazy">
+        <button onclick="openWallpaper('13.jpeg')">تحميل الخلفية 13 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="14" data-category="zoro">
+        <img src="14.jpeg" alt="خلفية ون بيس 14" loading="lazy">
+        <button onclick="openWallpaper('14.jpeg')">تحميل الخلفية 14 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="15" data-category="sanji">
+        <img src="15.jpeg" alt="خلفية ون بيس 15" loading="lazy">
+        <button onclick="openWallpaper('15.jpeg')">تحميل الخلفية 15 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="16" data-category="crew">
+        <img src="16.jpeg" alt="خلفية ون بيس 16" loading="lazy">
+        <button onclick="openWallpaper('16.jpeg')">تحميل الخلفية 16 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="17" data-category="luffy">
+        <img src="17.jpeg" alt="خلفية ون بيس 17" loading="lazy">
+        <button onclick="openWallpaper('17.jpeg')">تحميل الخلفية 17 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="18" data-category="zoro">
+        <img src="18.jpeg" alt="خلفية ون بيس 18" loading="lazy">
+        <button onclick="openWallpaper('18.jpeg')">تحميل الخلفية 18 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="19" data-category="sanji">
+        <img src="19.jpeg" alt="خلفية ون بيس 19" loading="lazy">
+        <button onclick="openWallpaper('19.jpeg')">تحميل الخلفية 19 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="20" data-category="crew">
+        <img src="20.jpeg" alt="خلفية ون بيس 20" loading="lazy">
+        <button onclick="openWallpaper('20.jpeg')">تحميل الخلفية 20 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="21" data-category="luffy">
+        <img src="21.jpeg" alt="خلفية ون بيس 21" loading="lazy">
+        <button onclick="openWallpaper('21.jpeg')">تحميل الخلفية 21 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="22" data-category="zoro">
+        <img src="22.jpeg" alt="خلفية ون بيس 22" loading="lazy">
+        <button onclick="openWallpaper('22.jpeg')">تحميل الخلفية 22 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="23" data-category="sanji">
+        <img src="23.jpeg" alt="خلفية ون بيس 23" loading="lazy">
+        <button onclick="openWallpaper('23.jpeg')">تحميل الخلفية 23 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="24" data-category="crew">
+        <img src="24.jpeg" alt="خلفية ون بيس 24" loading="lazy">
+        <button onclick="openWallpaper('24.jpeg')">تحميل الخلفية 24 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="25" data-category="luffy">
+        <img src="25.jpeg" alt="خلفية ون بيس 25" loading="lazy">
+        <button onclick="openWallpaper('25.jpeg')">تحميل الخلفية 25 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="26" data-category="zoro">
+        <img src="26.jpeg" alt="خلفية ون بيس 26" loading="lazy">
+        <button onclick="openWallpaper('26.jpeg')">تحميل الخلفية 26 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="27" data-category="sanji">
+        <img src="27.jpeg" alt="خلفية ون بيس 27" loading="lazy">
+        <button onclick="openWallpaper('27.jpeg')">تحميل الخلفية 27 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="28" data-category="crew">
+        <img src="28.jpeg" alt="خلفية ون بيس 28" loading="lazy">
+        <button onclick="openWallpaper('28.jpeg')">تحميل الخلفية 28 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="29" data-category="luffy">
+        <img src="29.jpeg" alt="خلفية ون بيس 29" loading="lazy">
+        <button onclick="openWallpaper('29.jpeg')">تحميل الخلفية 29 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="30" data-category="zoro">
+        <img src="30.jpeg" alt="خلفية ون بيس 30" loading="lazy">
+        <button onclick="openWallpaper('30.jpeg')">تحميل الخلفية 30 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="31" data-category="sanji">
+        <img src="31.jpeg" alt="خلفية ون بيس 31" loading="lazy">
+        <button onclick="openWallpaper('31.jpeg')">تحميل الخلفية 31 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="32" data-category="crew">
+        <img src="32.jpeg" alt="خلفية ون بيس 32" loading="lazy">
+        <button onclick="openWallpaper('32.jpeg')">تحميل الخلفية 32 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="33" data-category="luffy">
+        <img src="33.jpeg" alt="خلفية ون بيس 33" loading="lazy">
+        <button onclick="openWallpaper('33.jpeg')">تحميل الخلفية 33 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="34" data-category="zoro">
+        <img src="34.jpeg" alt="خلفية ون بيس 34" loading="lazy">
+        <button onclick="openWallpaper('34.jpeg')">تحميل الخلفية 34 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="35" data-category="sanji">
+        <img src="35.jpeg" alt="خلفية ون بيس 35" loading="lazy">
+        <button onclick="openWallpaper('35.jpeg')">تحميل الخلفية 35 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="36" data-category="crew">
+        <img src="36.jpeg" alt="خلفية ون بيس 36" loading="lazy">
+        <button onclick="openWallpaper('36.jpeg')">تحميل الخلفية 36 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="37" data-category="luffy">
+        <img src="37.jpeg" alt="خلفية ون بيس 37" loading="lazy">
+        <button onclick="openWallpaper('37.jpeg')">تحميل الخلفية 37 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="38" data-category="zoro">
+        <img src="38.jpeg" alt="خلفية ون بيس 38" loading="lazy">
+        <button onclick="openWallpaper('38.jpeg')">تحميل الخلفية 38 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="39" data-category="sanji">
+        <img src="39.jpeg" alt="خلفية ون بيس 39" loading="lazy">
+        <button onclick="openWallpaper('39.jpeg')">تحميل الخلفية 39 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="40" data-category="crew">
+        <img src="40.jpeg" alt="خلفية ون بيس 40" loading="lazy">
+        <button onclick="openWallpaper('40.jpeg')">تحميل الخلفية 40 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="41" data-category="luffy">
+        <img src="41.jpeg" alt="خلفية ون بيس 41" loading="lazy">
+        <button onclick="openWallpaper('41.jpeg')">تحميل الخلفية 41 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="42" data-category="zoro">
+        <img src="42.jpeg" alt="خلفية ون بيس 42" loading="lazy">
+        <button onclick="openWallpaper('42.jpeg')">تحميل الخلفية 42 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="43" data-category="sanji">
+        <img src="43.jpeg" alt="خلفية ون بيس 43" loading="lazy">
+        <button onclick="openWallpaper('43.jpeg')">تحميل الخلفية 43 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="44" data-category="crew">
+        <img src="44.jpeg" alt="خلفية ون بيس 44" loading="lazy">
+        <button onclick="openWallpaper('44.jpeg')">تحميل الخلفية 44 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="45" data-category="luffy">
+        <img src="45.jpeg" alt="خلفية ون بيس 45" loading="lazy">
+        <button onclick="openWallpaper('45.jpeg')">تحميل الخلفية 45 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="46" data-category="zoro">
+        <img src="46.jpeg" alt="خلفية ون بيس 46" loading="lazy">
+        <button onclick="openWallpaper('46.jpeg')">تحميل الخلفية 46 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="47" data-category="sanji">
+        <img src="47.jpeg" alt="خلفية ون بيس 47" loading="lazy">
+        <button onclick="openWallpaper('47.jpeg')">تحميل الخلفية 47 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="48" data-category="crew">
+        <img src="48.jpeg" alt="خلفية ون بيس 48" loading="lazy">
+        <button onclick="openWallpaper('48.jpeg')">تحميل الخلفية 48 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="49" data-category="luffy">
+        <img src="49.jpeg" alt="خلفية ون بيس 49" loading="lazy">
+        <button onclick="openWallpaper('49.jpeg')">تحميل الخلفية 49 ⬇️</button>
+    </div>
+
+    <div class="wallpaper" data-number="50" data-category="crew">
+        <img src="50.jpeg" alt="خلفية ون بيس 50" loading="lazy">
+        <button onclick="openWallpaper('50.jpeg')">تحميل الخلفية 50 ⬇️</button>
+    </div>
+
+</main>
+
+<div class="empty" id="empty">
+    مفيش خلفيات مطابقة للبحث.
+</div>
+
+<footer>
+    © 2026 محمد للخلفيات
+    <br><br>
+    صُنع لعشاق ون بيس 🏴‍☠️
+</footer>
+
+<script>
+function openWallpaper(filename) {
+    const link = document.createElement("a");
+
+    link.href = filename;
+    link.download = filename;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
+
+function searchWallpapers() {
+    const search = document.getElementById("search")
+        .value.trim().toLowerCase();
+
+    const cards = document.querySelectorAll(".wallpaper");
+    let visible = 0;
+
+    cards.forEach(card => {
+        const number = card.dataset.number;
+        const alt = card.querySelector("img").alt.toLowerCase();
+
+        const match = number.includes(search) || alt.includes(search);
+
+        card.style.display = match ? "" : "none";
+
+        if (match) visible++;
+    });
+
+    document.getElementById("empty").style.display =
+        visible ? "none" : "block";
+
+    document.querySelectorAll(".category").forEach(button => {
+        button.classList.remove("active");
+    });
+}
+
+function filterWallpapers(category, button) {
+    document.getElementById("search").value = "";
+
+    document.querySelectorAll(".category").forEach(item => {
+        item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const cards = document.querySelectorAll(".wallpaper");
+    let visible = 0;
+
+    cards.forEach(card => {
+        const match =
+            category === "all" ||
+            card.dataset.category === category;
+
+        card.style.display = match ? "" : "none";
+
+        if (match) visible++;
+    });
+
+    document.getElementById("empty").style.display =
+        visible ? "none" : "block";
+}
+</script>
 
 </body>
-</html>
+                                                                       </html>
