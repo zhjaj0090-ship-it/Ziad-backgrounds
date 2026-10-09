@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع محمد للخلفيات</title>
+
+  <style>
+    body {
+      background-color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      background: green;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 800px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .photo {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="titleText">عاوز خلفيات؟ خش عند محمد سالم</h1>
+
+  <div id="topButtons">
+    <button onclick="showPhoto(1)">اضغط هنا 😈</button>
+    <button onclick="showPhoto(2)">اضغط هنا 2 🖼️</button>
+  </div>
+
+  <div id="photo1" class="photo">
+    <img id="ziadImg" src="ziad.jpg" alt="صورة زياد">
+    <br>
+
+    <a href="ziad.jpg" download="ziad.jpg">
+      <button>⬇️ تحميل الصورة</button>
+    </a>
+
+    <br>
+
+    <button onclick="showPhoto(1)">🔙 رجوع للصورة</button>
+    <button onclick="showPhoto(2)">🖼️ الصورة الثانية</button>
+  </div>
+
+  <div id="photo2" class="photo">
+    <img id="ziadImg2" src="ziad2.jpg" alt="الصورة الثانية">
+    <br>
+
+    <a href="ziad2.jpg" download="ziad2.jpg">
+      <button>⬇️ تحميل الصورة</button>
+    </a>
+
+    <br>
+
+    <button onclick="showPhoto(2)">🔙 رجوع للصورة</button>
+    <button onclick="showPhoto(1)">🖼️ الصورة الأولى</button>
+  </div>
+
+  <script>
+    function showPhoto(number) {
+      document.getElementById('titleText').style.display = 'none';
+      document.getElementById('topButtons').style.display = 'none';
+
+      document.getElementById('photo1').style.display =
+        number === 1 ? 'block' : 'none';
+
+      document.getElementById('photo2').style.display =
+        number === 2 ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
