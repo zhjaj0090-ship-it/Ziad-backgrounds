@@ -252,13 +252,17 @@ footer {
     transform: scale(0.96);
     filter: brightness(1.15);
 }
-
 /* زر المشاركة */
 .wallpaper .share-wallpaper-btn {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
+    min-height: 46px;
     width: calc(100% - 16px);
-    margin: 8px;
-    padding: 10px;
+    margin: 8px auto;
+    padding: 12px 8px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 10px;
     background: linear-gradient(135deg, #1769aa, #123d70);
@@ -267,10 +271,21 @@ footer {
     font-weight: bold;
     cursor: pointer;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .wallpaper .share-wallpaper-btn:hover {
     filter: brightness(1.15);
+}
+
+@media (max-width: 600px) {
+    .wallpaper .share-wallpaper-btn {
+        display: block;
+        width: calc(100% - 12px);
+        min-height: 46px;
+        margin: 8px auto;
+        font-size: 14px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -279,36 +294,8 @@ footer {
         animation: none;
         transition: none;
     }
-    }
-    .wallpaper .share-wallpaper-btn {
-display: block !important;
-visibility: visible !important;
-opacity: 1 !important;
-position: relative;
-z-index: 10;
-min-height: 44px;
-margin: 10px auto;
-width: calc(100% - 16px);
-padding: 12px 8px;
-border: none;
-border-radius: 10px;
-background: linear-gradient(135deg, #1769aa, #123d70);
-color: #fff;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer;
--webkit-tap-highlight-color: transparent;
 }
 
-@media (max-width: 600px) {
-.wallpaper .share-wallpaper-btn {
-display: block !important;
-width: calc(100% - 12px);
-min-height: 46px;
-font-size: 14px;
-margin: 8px auto;
-}
-}
 </style>
 </head>
 
