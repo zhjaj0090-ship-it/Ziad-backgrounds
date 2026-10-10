@@ -181,6 +181,41 @@ footer {
         font-size: 40px;
     }
 }
+    /* عرض الخلفية بحجم كبير */
+.wallpaper img {
+    cursor: zoom-in;
+}
+
+.image-viewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.image-viewer img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.close-viewer {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    background: #c83b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    }
 </style>
 </head>
 
@@ -667,80 +702,75 @@ footer {
     <button onclick="openWallpaper('100.jpeg')">تحميل الخلفية ⬇️</button>
 </div>
 </main>
-
+<div class="image-viewer" id="imageViewer"
+     onclick="closeWallpaper(event)">
+    <button class="close-viewer"
+            onclick="closeWallpaper(event, true)">
+        ✖ إغلاق
+    </button>
+    <img id="viewerImage" src="" alt="عرض الخلفية">
+</div>
 <div class="empty" id="empty">
     مفيش خلفيات مطابقة للبحث.
 </div>
 
 <footer>
-    © 2026 محمد للخلفيات
+    © 2026 زياد للخلفيات
     <br><br>
     صُنع لعشاق ون بيس 🏴‍☠️
 </footer>
 
 <script>
-function openWallpaper(filename) {
+function openWallpaper(image) {
     const link = document.createElement("a");
-
-    link.href = filename;
-    link.download = filename;
-
+    link.href = image;
+    link.download = image.split("/").pop();
     document.body.appendChild(link);
     link.click();
     link.remove();
 }
 
 function searchWallpapers() {
-    const search = document.getElementById("search")
-        .value.trim().toLowerCase();
+    const input = document.getElementById("search").value.trim();
+    const wallpapers = document.querySelectorAll(".wallpaper");
+    const empty = document.getElementById("empty");
+    let found = 0;
 
-    const cards = document.querySelectorAll(".wallpaper");
-    let visible = 0;
+    wallpapers.forEach(function(wallpaper) {
+        const number = wallpaper.dataset.number;
+        const matches = number.includes(input);
 
-    cards.forEach(card => {
-        const number = card.dataset.number;
-        const alt = card.querySelector("img").alt.toLowerCase();
+        wallpaper.style.display = matches ? "" : "none";
 
-        const match = number.includes(search) || alt.includes(search);
-
-        card.style.display = match ? "" : "none";
-
-        if (match) visible++;
+        if (matches) found++;
     });
 
-    document.getElementById("empty").style.display =
-        visible ? "none" : "block";
-
-    document.querySelectorAll(".category").forEach(button => {
-        button.classList.remove("active");
-    });
+    empty.style.display = found === 0 ? "block" : "none";
 }
 
-function filterWallpapers(category, button) {
-    document.getElementById("search").value = "";
-
-    document.querySelectorAll(".category").forEach(item => {
-        item.classList.remove("active");
+// فتح الخلفية عند الضغط على الصورة
+document.querySelectorAll(".wallpaper img").forEach(function(img) {
+    img.addEventListener("click", function() {
+        document.getElementById("viewerImage").src = this.src;
+        document.getElementById("imageViewer").style.display = "flex";
     });
+});
 
-    button.classList.add("active");
-
-    const cards = document.querySelectorAll(".wallpaper");
-    let visible = 0;
-
-    cards.forEach(card => {
-        const match =
-            category === "all" ||
-            card.dataset.category === category;
-
-        card.style.display = match ? "" : "none";
-
-        if (match) visible++;
-    });
-
-    document.getElementById("empty").style.display =
-        visible ? "none" : "block";
+// إغلاق نافذة الصورة
+function closeWallpaper(event, forceClose) {
+    if (forceClose || event.target.id === "imageViewer") {
+        document.getElementById("imageViewer").style.display = "none";
+        document.getElementById("viewerImage").src = "";
+    }
 }
+
+// الإغلاق بزر Escape
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("imageViewer").style.display = "none";
+        document.getElementById("viewerImage").src = "";
+    }
+});
 </script>
 
 </body>
