@@ -721,6 +721,14 @@ footer {
     صُنع لعشاق ون بيس 🏴‍☠️
 </footer>
 <script>
+let showFavoritesOnly = false;
+
+function getFavorites() {
+    return JSON.parse(
+        localStorage.getItem("onePieceFavorites") || "[]"
+    );
+}
+
 function searchWallpapers() {
     const input = document.getElementById("search").value
         .trim()
@@ -735,18 +743,23 @@ function searchWallpapers() {
     ];
 
     const isLuffy = luffyNames.some(name => input.includes(name));
+    const favorites = getFavorites();
     let found = 0;
 
     wallpapers.forEach(function(wallpaper) {
-        const number = Number(wallpaper.dataset.number);
+        const number = String(wallpaper.dataset.number);
         let matches;
 
         if (input === "") {
             matches = true;
         } else if (isLuffy) {
-            matches = number >= 1 && number <= 29;
+            matches = Number(number) >= 1 && Number(number) <= 29;
         } else {
-            matches = String(wallpaper.dataset.number).includes(input);
+            matches = number.includes(input);
+        }
+
+        if (showFavoritesOnly) {
+            matches = matches && favorites.includes(number);
         }
 
         wallpaper.style.display = matches ? "" : "none";
@@ -754,6 +767,79 @@ function searchWallpapers() {
     });
 
     empty.style.display = found === 0 ? "block" : "none";
+}
+
+function updateHearts() {
+    const favorites = getFavorites();
+
+    document.querySelectorAll(".wallpaper").forEach(function(card) {
+        const number = String(card.dataset.number);
+        const heart = card.querySelector(".favorite-heart");
+
+        if (heart) {
+            heart.textContent = favorites.includes(number) ? "❤️" : "🤍";
+        }
+    });
+}
+
+document.querySelectorAll(".wallpaper").forEach(function(card) {
+    card.style.position = "relative";
+
+    const heart = document.createElement("button");
+    heart.type = "button";
+    heart.className = "favorite-heart";
+    heart.style.cssText =
+        "position:absolute;top:8px;right:8px;z-index:5;" +
+        "font-size:26px;background:#222b;border:0;border-radius:50%;" +
+        "padding:5px;cursor:pointer;";
+
+    heart.setAttribute("aria-label", "إضافة للمفضلة");
+
+    heart.addEventListener("click", function(event) {
+        event.stopPropagation();
+
+        const number = String(card.dataset.number);
+        let favorites = getFavorites();
+
+        if (favorites.includes(number)) {
+            favorites = favorites.filter(n => n !== number);
+        } else {
+            favorites.push(number);
+        }
+
+        localStorage.setItem(
+            "onePieceFavorites",
+            JSON.stringify(favorites)
+        );
+
+        updateHearts();
+        searchWallpapers();
+    });
+
+    card.appendChild(heart);
+});
+
+const searchInput = document.getElementById("search");
+
+if (searchInput) {
+    const favoritesButton = document.createElement("button");
+    favoritesButton.type = "button";
+    favoritesButton.textContent = "❤️ عرض المفضلة";
+    favoritesButton.style.cssText =
+        "padding:10px 16px;margin:8px;border:0;border-radius:10px;" +
+        "background:#198754;color:white;font-size:16px;cursor:pointer;";
+
+    searchInput.insertAdjacentElement("beforebegin", favoritesButton);
+
+    favoritesButton.addEventListener("click", function() {
+        showFavoritesOnly = !showFavoritesOnly;
+
+        favoritesButton.textContent = showFavoritesOnly
+            ? "↩ عرض كل الصور"
+            : "❤️ عرض المفضلة";
+
+        searchWallpapers();
+    });
 }
 
 document.querySelectorAll(".wallpaper img").forEach(function(img) {
@@ -769,6 +855,8 @@ document.querySelectorAll(".wallpaper img").forEach(function(img) {
         }
     });
 });
+
+updateHearts();
 </script>
 
 </body>
