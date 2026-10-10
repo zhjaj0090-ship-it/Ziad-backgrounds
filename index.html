@@ -704,10 +704,11 @@ footer {
 </main>
 <div class="image-viewer" id="imageViewer"
      onclick="closeWallpaper(event)">
-    <button class="close-viewer"
-            onclick="closeWallpaper(event, true)">
-        ✖ إغلاق
-    </button>
+   <button type="button"
+        onclick="document.getElementById('imageViewer').style.display='none'"
+        style="position:fixed;top:15px;right:15px;z-index:10001;padding:12px;background:red;color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;">
+    ✖ إغلاق
+   </button>     
     <img id="viewerImage" src="" alt="عرض الخلفية">
 </div>
 <div class="empty" id="empty">
