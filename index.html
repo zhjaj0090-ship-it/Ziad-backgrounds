@@ -719,13 +719,11 @@ footer {
     <br><br>
     صُنع لعشاق ون بيس 🏴‍☠️
 </footer>
-
 <script>
 function searchWallpapers() {
     const input = document.getElementById("search").value
         .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
+        .toLowerCase();
 
     const wallpapers = document.querySelectorAll(".wallpaper");
     const empty = document.getElementById("empty");
@@ -747,22 +745,27 @@ function searchWallpapers() {
         } else if (isLuffy) {
             matches = number >= 1 && number <= 29;
         } else {
-            matches = wallpaper.dataset.number.includes(input);
+            matches = String(wallpaper.dataset.number).includes(input);
         }
 
         wallpaper.style.display = matches ? "" : "none";
-
         if (matches) found++;
     });
 
     empty.style.display = found === 0 ? "block" : "none";
 }
-    document.querySelectorAll(".wallpaper img").forEach(function(img) {
+
+document.querySelectorAll(".wallpaper img").forEach(function(img) {
     img.style.cursor = "zoom-in";
 
     img.addEventListener("click", function() {
-        document.getElementById("viewerImage").src = this.src;
-        document.getElementById("imageViewer").style.display = "flex";
+        const viewer = document.getElementById("imageViewer");
+        const viewerImage = document.getElementById("viewerImage");
+
+        if (viewer && viewerImage) {
+            viewerImage.src = this.src;
+            viewer.style.display = "flex";
+        }
     });
 });
 </script>
