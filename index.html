@@ -215,7 +215,72 @@ footer {
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+}
+
+/* تحسين ظهور الخلفيات */
+.wallpaper {
+    animation: wallpaperAppear 0.5s ease both;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+}
+
+@keyframes wallpaperAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تأثير عند المرور على الخلفية */
+@media (hover: hover) {
+    .wallpaper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* تأثير ضغط مناسب للموبايل */
+.wallpaper button {
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.wallpaper button:active {
+    transform: scale(0.96);
+    filter: brightness(1.15);
+}
+
+/* زر المشاركة */
+.wallpaper .share-wallpaper-btn {
+    display: block;
+    width: calc(100% - 16px);
+    margin: 8px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1769aa, #123d70);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.wallpaper .share-wallpaper-btn:hover {
+    filter: brightness(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wallpaper,
+    .wallpaper button {
+        animation: none;
+        transition: none;
+    }
+    }
+    
 </style>
 </head>
 
