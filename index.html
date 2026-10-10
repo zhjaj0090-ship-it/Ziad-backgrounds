@@ -757,6 +757,14 @@ function searchWallpapers() {
 
     empty.style.display = found === 0 ? "block" : "none";
 }
+    document.querySelectorAll(".wallpaper img").forEach(function(img) {
+    img.style.cursor = "zoom-in";
+
+    img.addEventListener("click", function() {
+        document.getElementById("viewerImage").src = this.src;
+        document.getElementById("imageViewer").style.display = "flex";
+    });
+});
 </script>
 
 </body>
