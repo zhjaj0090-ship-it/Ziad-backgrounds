@@ -728,6 +728,13 @@ function openWallpaper(image) {
     document.body.appendChild(link);
     link.click();
     link.remove();
+function openWallpaper(image) {
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = image.split("/").pop();
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 }
 
 function searchWallpapers() {
@@ -747,6 +754,28 @@ function searchWallpapers() {
 
     empty.style.display = found === 0 ? "block" : "none";
 }
+document.querySelectorAll(".wallpaper img").forEach(function(img) {
+    img.addEventListener("click", function() {
+        document.getElementById("viewerImage").src = this.src;
+        document.getElementById("imageViewer").style.display = "flex";
+    });
+});
+
+// إغلاق نافذة الصورة
+function closeWallpaper(event, forceClose) {
+    if (forceClose || event.target.id === "imageViewer") {
+        document.getElementById("imageViewer").style.display = "none";
+        document.getElementById("viewerImage").src = "";
+    }
+}
+
+// الإغلاق بزر Escape
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("imageViewer").style.display = "none";
+        document.getElementById("viewerImage").src = "";
+    }
+});
 
 // فتح الخلفية عند الضغط على الصورة
 document.querySelectorAll(".wallpaper img").forEach(function(img) {
