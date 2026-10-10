@@ -889,6 +889,53 @@ document.querySelectorAll(".wallpaper").forEach(function(card) {
             JSON.stringify(favorites)
         );
 
+async function shareWallpaper(imageUrl) {
+    const imageLink = new URL(
+        imageUrl,
+        window.location.href
+    ).href;
+
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: "خلفية ون بيس 🏴‍☠️",
+                text: "شوف الخلفية دي من موقع زياد للخلفيات!",
+                url: imageLink
+            });
+        } else if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(imageLink);
+            alert("تم نسخ رابط الخلفية! تقدر تبعته لأي حد.");
+        } else {
+            prompt("انسخ رابط الخلفية:", imageLink);
+        }
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            alert("تعذرت المشاركة. جرّب نسخ رابط الخلفية.");
+        }
+    }
+}
+
+document.querySelectorAll(".wallpaper").forEach(function(card) {
+    const img = card.querySelector("img");
+
+    if (!img || card.querySelector(".share-wallpaper-btn")) {
+        return;
+    }
+
+    const shareButton = document.createElement("button");
+    shareButton.type = "button";
+    shareButton.className = "share-wallpaper-btn";
+    shareButton.textContent = "📤 مشاركة الخلفية";
+
+    shareButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        shareWallpaper(img.getAttribute("src"));
+    });
+
+    card.appendChild(shareButton);
+});
+        
         updateHearts();
         searchWallpapers();
     });
