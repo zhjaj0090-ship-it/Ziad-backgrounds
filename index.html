@@ -721,7 +721,18 @@ footer {
     صُنع لعشاق ون بيس 🏴‍☠️
 </footer>
 <script>
-let showFavoritesOnly = false;
+
+function openWallpaper(imageUrl) {
+    const link = document.createElement("a");
+    link.href = imageUrl;
+    link.download = imageUrl.split("/").pop();
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+}
+    
+    let showFavoritesOnly = false;
 
 function getFavorites() {
     return JSON.parse(
