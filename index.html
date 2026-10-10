@@ -280,7 +280,35 @@ footer {
         transition: none;
     }
     }
-    
+    .wallpaper .share-wallpaper-btn {
+display: block !important;
+visibility: visible !important;
+opacity: 1 !important;
+position: relative;
+z-index: 10;
+min-height: 44px;
+margin: 10px auto;
+width: calc(100% - 16px);
+padding: 12px 8px;
+border: none;
+border-radius: 10px;
+background: linear-gradient(135deg, #1769aa, #123d70);
+color: #fff;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+-webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 600px) {
+.wallpaper .share-wallpaper-btn {
+display: block !important;
+width: calc(100% - 12px);
+min-height: 46px;
+font-size: 14px;
+margin: 8px auto;
+}
+}
 </style>
 </head>
 
