@@ -904,6 +904,27 @@ document.querySelectorAll(".wallpaper").forEach(function(card) {
             JSON.stringify(favorites)
         );
 
+document.querySelectorAll(".wallpaper").forEach(function(card) {
+    const img = card.querySelector("img");
+
+    if (!img || card.querySelector(".share-wallpaper-btn")) {
+        return;
+    }
+
+    const shareButton = document.createElement("button");
+    shareButton.type = "button";
+    shareButton.className = "share-wallpaper-btn";
+    shareButton.textContent = "📤 مشاركة الخلفية";
+
+    shareButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        shareWallpaper(img.getAttribute("src"));
+    });
+
+    card.appendChild(shareButton);
+});
+        
 async function shareWallpaper(imageUrl) {
     const imageLink = new URL(
         imageUrl,
